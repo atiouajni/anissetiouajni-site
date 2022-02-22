@@ -1,0 +1,13 @@
+{{ define "main" }}
+	<div class="container">
+	    <h1>All {{ .Type }}</h1>
+		<p>Click any of the {{ .Data.Plural }} listed below to see all the posts assigned to that {{ .Data.Singular }}.</p>
+	    <ul>
+	      {{ range .Pages }}
+	        <li>
+	          <a href="{{ .Permalink }}">{{ humanize .Title }}</a>
+	        </li>
+	      {{ end }}
+	    </ul>
+	</div>
+{{ end }}
