@@ -82,7 +82,7 @@ enableRobotsTXT = true
   showPostsOnHomePage = "recent"
 
   # Footer text
-  footer = "The Marauders"
+  footer = "- Anisse Tiouajni"
   
 [markup]
   [markup.highlight]
