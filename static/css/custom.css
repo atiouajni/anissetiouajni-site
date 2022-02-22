@@ -1,0 +1,122 @@
+/* TABLE */
+table {
+    display: table;
+    width: 100%;
+}
+table td, table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    border: 1px solid #dee2e6;
+}
+
+/* POST */
+.post .post-header-section {
+    text-align: center;
+}
+
+.post .post-content p{
+    text-align: justify;
+}
+
+.post .post-date, article .post-date {
+    display: block;
+    margin-top: -.5rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    font-size: .75em;
+    color: gray;
+}
+.post-tag {
+    margin-bottom: 0.25rem;
+}
+
+/* POSTS */
+.list-posts article .summary{
+    margin-bottom: 0.5rem;
+    text-align: justify;
+}
+.list-posts article h2 {
+    margin-bottom: 0.25rem;
+}
+.list-posts .post-title {
+    margin: 0 0 0 15px;
+}
+.list-posts .posts-year {
+    margin-top: 30px;
+}
+.list-posts .post-tag-label {
+    color: inherit;
+    display: inline-block;
+    font-size: 14px;
+}
+
+/* Navigation (<-Previous | Next->) */
+.navigation {
+    text-align: center;
+    margin-top: 2rem;
+}
+.navigation .nav-divider {
+    margin: 0 1rem;
+}
+.navigation a.disabled {
+    pointer-events: none;
+    color: gray;
+}
+.feather {
+    vertical-align: middle;
+}
+
+/*Table of contents collapsible*/
+.collapsible {
+    background-color: var(--light-secondary-color);
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+.active, .collapsible:hover {
+    background-color: lightgrey;
+}
+button.collapsible:after {
+    content: '\002B';
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+button.collapsible.active:after {
+    content: "\2212";
+}
+.toc {
+    background-color: #f1f1f1;
+}
+#TableOfContents {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+}
+#TableOfContents a {
+    text-decoration: none;
+}
+#TableOfContents ul {
+    list-style-type: decimal;
+}
+#TableOfContents ul li {
+    margin-bottom: 0.5rem;
+}
+#TableOfContents > ul > li > ul{
+    margin-top: 0.5rem;
+}
+#TableOfContents ::marker {
+    content: counters(list-item,'.') ' - ';
+  }
+
+.home-about .description {
+    text-align: justify;
+}
+  
+

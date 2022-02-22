@@ -1,0 +1,23 @@
+<div class="container list-posts">
+
+    <h1>All {{ .Type }}</h2>
+    {{ range .Paginator.Pages }}
+    {{- partial "list-posts.html" . -}}
+    {{ end }}
+
+    <nav class="navigation">
+        {{ if .Paginator.HasPrev }}
+            <a href="{{ .Paginator.Prev.URL }}"><span data-feather='chevron-left'></span>Previous</a>
+        {{ else }}
+            <a class='disabled' href="#"><span data-feather='chevron-left'></span>Previous</a>
+        {{ end }}
+        
+        <span class="nav-divider">&#124;</span>
+
+        {{ if .Paginator.HasNext }}
+        <a href="{{ .Paginator.Next.URL }}">Next<span data-feather='chevron-right'></span></a>
+        {{ else }}
+            <a class='disabled' href="#">Next<span data-feather='chevron-right'></span></a>
+        {{ end }}
+    </nav>
+</div>

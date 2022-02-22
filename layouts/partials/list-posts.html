@@ -1,0 +1,27 @@
+<!--<article class="post-title">
+    <a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a>
+    <div class="flex-break"></div>
+    <span class="post-date">{{ dateFormat "January 2, 2006" .Date }}</span>
+</article>-->
+
+
+<article class="post-title">
+    <div>
+        <a href="{{ .RelPermalink }}" class="post-link"><h2>{{ .Title }}</h2></a>
+    </div>
+    <span class="post-date">
+        {{ dateFormat "January 2, 2006" .Date }} ({{ .ReadingTime }} minutes read)
+    </span>
+    <div class="summary">
+        {{ .Summary }}
+    </div>
+    {{ if isset .Params "tags" }} 
+        <ul class="post-tags">
+            <li class="post-tag-label">Tags: </li>
+            
+            {{ range .Params.tags }}
+                <li class="post-tag"><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+            {{ end }}
+        </ul>
+    {{ end }}
+</article>
