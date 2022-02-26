@@ -1,7 +1,6 @@
 ---
 title: "Automate Hugo Blog Post Publishing Process With Netlify"
 date: 2022-02-25T18:03:38+01:00
-draft: true
 type: 'post'
 categories: ['blog']
 ---
