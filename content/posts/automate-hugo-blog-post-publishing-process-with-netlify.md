@@ -86,7 +86,7 @@ We can add some draft content by simply typing this command :
 hugo new posts/my-first-post.md
 ```
 
-Once our post is written, read and re-read, we can remove the `draft` property and push the whole structure into our GitHub repository. If this property remains at `true`, the content will not be visible to the public once the site is deployed.
+Once our post is written, read and re-read, we can remove the `draft` property and push the whole structure into our GitHub repository. If this property remains at `true`, the content will not be visible to the public after publication.
 
 ## Deploy static site to Netlify
 
@@ -123,7 +123,7 @@ Edit the file with this content :
 
 Then just follow the very good [step-by-step](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/) tutorial provided by Netlify. 
 
-We are able to generate our website automatically and continuously. But to access it, we must go through the subdomains of Netlify. By default, any site on Netlify is accessible from its Netlify subdomain, which has the form `[name-of-your-site].netlify.app`. In my case, it is [heuristic-lalande-14552d.netlify.app](heuristic-lalande-14552d.netlify.app).
+We are able to generate our website automatically and continuously. But to access it, we must go through the subdomains of Netlify. By default, any site on Netlify is accessible from its Netlify subdomain, which has the form `[name-of-your-site].netlify.app`. In my case, it is [heuristic-lalande-14552d.netlify.app](https://heuristic-lalande-14552d.netlify.app).
 
 ## Point custom domain name to Netlify
 
