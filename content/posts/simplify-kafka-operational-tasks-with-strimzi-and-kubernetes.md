@@ -1,7 +1,6 @@
 ---
 title: "Simplify Kafka Operational Tasks With Strimzi and Kubernetes"
 date: 2022-03-01T16:49:36+01:00
-draft: true
 type: 'post'
 categories: ['messaging', 'streaming']
 tags: ['strimzi', 'kafka', 'kubernetes', 'openshift']
@@ -28,7 +27,8 @@ To introduce the Strimzi features, I will simulate a production release of a Kaf
 Once I checked the [prerequisites](https://strimzi.io/docs/operators/in-development/full/deploying.html#deploy-prereqs-str) and created a dedicated project called (`kafka`), the first step is to install Strimzi Operator Lifecycle Manager ([OLM](https://github.com/operator-framework/operator-lifecycle-manager)) :
  
 ```shell
-git clone https://github.com/atiouajni/strimzi-kafka-demo && cd kafka-demo
+git clone https://github.com/atiouajni/strimzi-kafka-demo && cd strimzi-kafka-demo
+oc new-project kafka
 oc create -f manifests/strimzi/strimzi-operator-subscription.yaml
 ```
  
@@ -212,7 +212,11 @@ oc get route grafana-route -o jsonpath='{.spec.host}'
 From a web browser, the list of dashboards is accessible at the url `<hostname>/dashboards`
  
 ![Grafana dashboards](/img/2022-03-01/grafana-dashboards.png)
- 
+
+|       Kafka dashboard                                            | Zookeeper dashboard                   |
+|:----------------------------------------------------------------:|:-----------------------------------------------------------------------:|
+| ![Kafka dashboard](/img/2022-03-01/strimzi-kafka-dashboard.png)  | ![Zookeeper dashboard](/img/2022-03-01/strimzi-zookeeper-dashboard.png) | 
+
 ## Upgrading Kafka
  
 The [upgrade](https://strimzi.io/docs/operators/in-development/full/deploying.html#assembly-upgrade-str) part is very well documented by Strimzi. However, to do the tests and demonstrate that there is no loss of connection to the cluster or loss of data, I must first look at the implementation of producers and consumers clients. I will do this in another blog post. So stay tuned !
