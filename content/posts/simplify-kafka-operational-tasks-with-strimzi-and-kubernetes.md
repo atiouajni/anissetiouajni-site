@@ -28,7 +28,7 @@ To introduce the Strimzi features, I will simulate a production release of a Kaf
 Once I checked the [prerequisites](https://strimzi.io/docs/operators/in-development/full/deploying.html#deploy-prereqs-str) and created a dedicated project called (`kafka`), the first step is to install Strimzi Operator Lifecycle Manager ([OLM](https://github.com/operator-framework/operator-lifecycle-manager)) :
  
 ```shell
-git clone https://github.com/atiouajni/kafka-demo && cd kafka-demo
+git clone https://github.com/atiouajni/strimzi-kafka-demo && cd kafka-demo
 oc create -f manifests/strimzi/strimzi-operator-subscription.yaml
 ```
  
