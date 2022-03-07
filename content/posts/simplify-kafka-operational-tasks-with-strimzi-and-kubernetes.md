@@ -385,6 +385,3 @@ date +%T -s "10:13:13"
 ## Summary
  
 We are able to deploy a Kafka cluster easily without the configuration complexity that we can have during traditional installation. Strimzi provides an abstraction layer to simplify operational tasks. Deploying, upgrading and monitoring become tasks much more mastered and easy to achieve.
-
-Sources:
-
