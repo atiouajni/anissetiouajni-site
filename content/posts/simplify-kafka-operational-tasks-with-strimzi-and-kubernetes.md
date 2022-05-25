@@ -33,6 +33,7 @@ Once I checked the [prerequisites](https://strimzi.io/docs/operators/in-developm
 ```shell
 git clone https://github.com/atiouajni/strimzi-kafka-demo && cd strimzi-kafka-demo
 oc new-project kafka
+oc create -f manifests/strimzi/strimzi-operator-group.yaml
 oc create -f manifests/strimzi/strimzi-operator-subscription.yaml
 ```
 
