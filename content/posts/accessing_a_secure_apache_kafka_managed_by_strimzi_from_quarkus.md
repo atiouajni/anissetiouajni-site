@@ -1,7 +1,6 @@
 ---
 title: "Accessing a secure Apache Kafka from Spring Boot"
 date: 2022-05-25T12:12:24+02:00
-draft: true
 type: 'post'
 categories: ['messaging', 'streaming']
 tags: ['strimzi', 'kafka', 'kubernetes', 'openshift', 'springboot']
