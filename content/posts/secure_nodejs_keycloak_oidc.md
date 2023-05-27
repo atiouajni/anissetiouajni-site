@@ -61,7 +61,15 @@ podman run --name keyclock -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=ad
 
     ```
     mv .env.sample .env
-    ```
+
+4. Open the `.env` file and provide the following configuration values for authentication:
+
+   - `OIDC_BASE_URI`: The base URL of your Keycloak server.
+   - `OIDC_CLIENT_ID`: The client ID of your application registered in Keycloak.
+   - `OIDC_CLIENT_SECRET`: The client secret associated with the client ID.
+   - `OIDC_REDIRECT_URI`: The redirect URI where Keycloak will redirect the user after successful authentication.
+
+   Make sure to replace these placeholder values **if changed** with your actual Keycloak configuration details.    ```
 
 4. Run the following command to install the necessary dependencies:
 
