@@ -71,7 +71,7 @@ podman run --name keyclock -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=ad
 
    Make sure to replace these placeholder values **if changed** with your actual Keycloak configuration details.    ```
 
-4. Run the following command to install the necessary dependencies:
+5. Run the following command to install the necessary dependencies:
 
    ```
    npm install
@@ -79,7 +79,7 @@ podman run --name keyclock -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=ad
 
    This will install the dependencies specified in `package.json` file.
 
-5. Run the following command to start the Node.js server:
+6. Run the following command to start the Node.js server:
 
    ```
    npm start
@@ -87,11 +87,11 @@ podman run --name keyclock -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=ad
 
    This will launch your Node.js application and make it accessible via a web browser.
 
-6. Open a web browser and navigate to the Node.js application's URL. (localhost:3000)
+7. Open a web browser and navigate to the Node.js application's URL. (localhost:3000)
 
-7. Click on the "Login" button or link to access the login page.
+8. Click on the "Login" button or link to access the login page.
 
-8. Use the pre-configured user credentials to log in. For example:
+9. Use the pre-configured user credentials to log in. For example:
 
     Username: user
 
