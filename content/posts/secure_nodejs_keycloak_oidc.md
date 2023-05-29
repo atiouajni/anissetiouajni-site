@@ -61,6 +61,7 @@ podman run --name keyclock -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=ad
 
     ```
     mv .env.sample .env
+    ```
 
 4. Open the `.env` file and provide the following configuration values for authentication:
 
