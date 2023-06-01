@@ -10,14 +10,16 @@ Keycloak is a powerful identity and authentication server widely used to secure 
 
 Fortunately, Keycloak provides an extensible architecture through Service Provider Interfaces (SPIs), which allow you to extend the basic functionalities of Keycloak to meet specific needs. In the case of observability metrics, there is an open-source SPI available that interfaces with Prometheus, a popular monitoring and metrics management system. This SPI enables the collection and exposure of Keycloak-related metrics, which can then be visualized in a graphical interface like Grafana.
 
+![Keycloak Metrics Dashboard](/img/2023-05-28/grafana_dashboard_keycloak_metrics.png)
+
 In this post, we will explore how to use this SPI to add observability metrics to Keycloak and display them in Grafana. We will use Podman to deploy each application in a separate container : 
 
- - Keycloak 21.0.2
- - Prometheus
- - Grafana
- - Keycloak Metrics SPI 
+ - Keycloak (21.0.2)
+ - Prometheus (2.44.0)
+ - Grafana (9.5.2)
+ - Keycloak Metrics SPI (3.0.0)
 
- You will find all the files in my [GitHub repository](http://github.com/atiouajni/keycloak-observability)
+ You will find all the files in my [**GitHub repository**](http://github.com/atiouajni/keycloak-observability)
 
 ## Create a new Keycloak image with the SPI
 
@@ -45,8 +47,8 @@ podman create pod prometheus-pod
 podman create pod grafana-pod
 
 podman run --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -d --network net1 --pod keycloak-pod -p 8181:8080 localhost/keycloak-observability start-dev --metrics-enabled=true
-podman run --name prometheus -d --network net1 --pod new:prometheus-pod -p 9191:9090 -v $(pwd)/prometheus-config.yaml:/etc/prometheus/prometheus.yml quay.io/prometheus/prometheus
-podman run --name grafana -d -it -p 3131:3000 --network net1 --pod grafana-pod grafana/grafana
+podman run --name prometheus -d --network net1 --pod new:prometheus-pod -p 9191:9090 -v $(pwd)/prometheus-config.yaml:/etc/prometheus/prometheus.yml quay.io/prometheus/prometheus:v2.44.0
+podman run --name grafana -d -it -p 3131:3000 --network net1 --pod grafana-pod grafana/grafana:9.5.2
 ```
 This configuration will give us the below typology :
 
@@ -72,7 +74,19 @@ You should see these lines :
 
 ![Endpoint status UP](/img/2023-05-28/status_endpoint_up.png)
 
-## Access to Keycloak observability
+## Configure Keycloak - Enable metrics-listener event
+
+To enable the event listener via the GUI interface, go to Manage -> Events -> Config. The Event Listeners configuration should have an entry named metrics-listener.
+
+To enable the event listener via the Keycloak CLI :
+```
+podman exec -it keycloak /bin/bash
+cd /opt/keycloak/bin
+./kcadm.sh config credentials --server http://localhost:8080 --realm master --user $KEYCLOAK_ADMIN --password $KEYCLOAK_ADMIN_PASSWORD
+./kcadm.sh update events/config -s "eventsEnabled=true" -s "adminEventsEnabled=true" -s "eventsListeners+=metrics-listener"
+```
+
+## Access Keycloak observability through Grafana dashboard
 
 1. Open a browser and access the URL `http://localhost:3131` to access the Grafana interface.
 2. Log in with the default credentials (admin/admin).
@@ -87,9 +101,12 @@ Now you can monitor metrics from your keycloak realms like :
 - Total successful client logins
 - Total registered users
 - Total errors on registrations
-- and many others...
- 
+- [and many others...](https://github.com/aerogear/keycloak-metrics-spi#generic-events)
 
-**Conclusion:**
+## Conclusion
 
-By utilizing the Keycloak Prometheus SPI, it is possible to extend Keycloak's capabilities by adding observability metrics. Integrating Keycloak with Prometheus and Grafana enables you to monitor and visualize Keycloak's authentication and usage metrics in a production environment. This allows you to closely track Keycloak's activity, diagnose potential issues, and make informed decisions to improve its performance and reliability.
+By utilizing Keycloak Metrics SPI, it is possible to extend Keycloak's capabilities by adding observability metrics. Integrating Keycloak with Prometheus and Grafana enables you to monitor and visualize Keycloak's authentication and usage metrics in a production environment. This allows you to closely track Keycloak's activity, diagnose potential issues, and make informed decisions to improve its performance and reliability.
+
+## Encountered issues
+ - For macOS users, leaving the podman VM running will cause a time drift pretty quickly. Prometheus relies on accurate time and time drift might cause unexpected query results. Restarting the VM solve the issue. 
+ - The SPI keycloak metric seems to be not compatible with Keycloak latest version (21.0.2) 
