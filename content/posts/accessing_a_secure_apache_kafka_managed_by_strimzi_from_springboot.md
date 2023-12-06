@@ -1,12 +1,25 @@
 ---
-title: "Accessing a secure Apache Kafka from Quarkus"
-date: 2023-05-02T15:17:24+02:00
+title: "Accessing a secure Apache Kafka from Spring Boot"
+date: 2022-05-25T12:12:24+02:00
 type: 'post'
-draft: true
 categories: ['messaging', 'streaming']
-tags: ['strimzi', 'kafka', 'kubernetes', 'openshift', 'quarkus']
+tags: ['strimzi', 'kafka', 'kubernetes', 'openshift', 'springboot']
 ---
-As we were able to create an application in Spring Boot to connect to the Kafka cluster deployed by Strimzi (cf. [Accessing a secure Apache Kafka from Spring Boot]( {{< ref "accessing_a_secure_apache_kafka_managed_by_strimzi_from_springboot.md" >}} )), we will now see how to create a second application based on a different framework called Quarkus which produces and consumes messages from the same Kafka cluster.
+Now that we are able to deploy a Kafka cluster using Strimzi (cf. [Simplify Kafka Operational Tasks With Strimzi and Kubernetes]( {{< ref "simplify-kafka-operational-tasks-with-strimzi-and-kubernetes.md" >}})), it will be interesting to see how we can retrieve configuration from the secure cluster to be able to produce and consume events.
+In this blog, I will use the Kafka cluster previously created and Spring Boot as the development framework.
+
+But before we start coding, let's try to understand how the authentication and authorization mechanism of our Kafka cluster works. When we deploy a cluster using Strimzi crds, we need to mention which authn and authz mechanisms to use. 
+In my last blog, I configured a cluster to use mutual Transport Layer Security (mTLS) for authentication and Simple authorizer (native solution provided by Kafka) for authorization. I will reuse it.
+
+Mutual TLS is one of the most significant practices which uses client TLS certificate to cryptographically ensure the client information while providing an additional layer of security. mTLS works as follows :
+- Each Kafka cluster needs its own private-key/certificate pair, and the client uses the certificate to authenticate the cluster.
+- Each logical client needs its private-key/certificate pair, and the broker uses the certificate to authenticate the client.
+
+![Mutual TLS handshake](/img/2022-05-25/mtls-process-kafka.png)
+
+I will create a producer and consumer separatly to demonstrate how we can easily connect to the Kafka cluster via applications developed in Spring Boot.
+
+![Kafka producer and consumer diagram](/img/2022-05-25/kafka-scenario.png)
 
 ## Prepare your environment
 
