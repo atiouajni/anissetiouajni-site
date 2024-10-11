@@ -30,7 +30,7 @@ A visit to [OVHcloud](https://www.ovhcloud.com/) to buy the domain name anisseti
 
 A picture paints a thousand words :
 
-[![Post publishing process](/img/2022-02-25/post-publishing-process.png "Post publishing process")](/img/2022-02-25/post-publishing-process.png)
+![Post publishing process](/img/2022-02-25/post-publishing-process.png)
 
 Now let's get to the practical part. I will describe the entire procedure from installing Hugo on my pc to putting my site online and creating my first post!
 
@@ -132,7 +132,7 @@ As I said above, Netlify allows us to specify custom domains. I will set up this
 To assign a custom domain to a site, navigate to the Netlify GUI (you must be logged) `Site settings > Domain management > Custom domains`.
 Select `Add domain alias` at the bottom of the Custom domains panel, and enter the custom domain name. Once added, you will have a warning message like this :
 
-[![Check DNS configuration Netlify](/img/2022-02-25/domains-https-check-dns-configuration.png "Check DNS configuration Netlify")](domains-https-check-dns-configuration.png)
+![Check DNS configuration Netlify](/img/2022-02-25/domains-https-check-dns-configuration.png)
 
 Now we are pretty close and all that’s left to do is configuring the DNS. Just click on the Check DNS configuration and we will get the Netlify nameservers, that we would need to update in our domain DNS settings.
 
